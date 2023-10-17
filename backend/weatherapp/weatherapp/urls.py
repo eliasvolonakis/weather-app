@@ -15,7 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from .views import WeatherData
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('weather/<str:location>/', WeatherData, name='weather-data'),
 ]
