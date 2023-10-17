@@ -24,7 +24,7 @@ print(LOCATION_API)
 print(WEATHER_API)
 
 @api_view(('GET',))
-@renderer_classes((TemplateHTMLRenderer, JSONRenderer))
+@renderer_classes((JSONRenderer,))
 def weather_forecast(request, location):
     location_api = LOCATION_API.format(location)
     location_response = requests.get(location_api).json()
@@ -46,6 +46,7 @@ def weather_forecast(request, location):
                 min_temperature = data["daily"]['temperature_2m_min'][i],
                 max_temperature = data["daily"]['temperature_2m_max'][i],
             )
+            i += 1
         return Response(data, status=status.HTTP_200_OK)
     else:
         return Response({'error': 'Failed to fetch data from the weather API'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
