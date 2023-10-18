@@ -1,0 +1,55 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    padding:0;
+}
+
+.App {
+        width: '100vw';
+        height: '100vh';
+        background-image: url('./../images/sky.png');
+        background-position: 'center';
+        background-size: 'cover';
+        background-repeat: 'no-repeat';
+}
+
+.WeatherForecast {
+    height: 100%;
+    background-image: url('./../images/sky.png'); /* Adjust the URL based on your project's structure */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    text-align: center;
+    margin-top: 20px;
+  }  
+  input {
+    padding: 5px;
+  }
+  
+  .error {
+    color: red;
+  }
+
+  .table-container {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .forecast-table {
+    border-collapse: collapse;
+    background-color: #f2f2f2; /* Set the gray background color */
+    width: 80%; /* Adjust the width as needed */
+    margin: 20px; /* Add margin for spacing */
+  }
+  
+  .forecast-table th,
+  .forecast-table td {
+    border: 1px solid #ddd; /* Add vertical and horizontal lines */
+    padding: 8px;
+    text-align: center;
+  }
+  
+  .forecast-table th {
+    background-color: #ccc; /* Header background color */
+  }
