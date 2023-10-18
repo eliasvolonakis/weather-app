@@ -1,22 +1,28 @@
-# myapp/tests.py
 from django.test import TestCase
-from django.urls import reverse
+from rest_framework.test import APIClient
+from rest_framework import status
+from .models import WeatherForecast
+from unittest.mock import patch, Mock
+import json
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from rest_framework import status
+import requests
+from tzfpy import get_tz
+import pytest
+from  rest_framework.test import APIClient
 from .models import WeatherForecast
 
-class WeatherForecastTest(TestCase):
-    def setUp(self):
-        self.date="2023-10-15"
-        self.min_temperature=25.0
-        self.max_temperature=30.0
-        WeatherForecast.objects.create(
-            date="2023-10-15",
-            min_temperature=25.0,
-            max_temperature=30.0
-        )
+client = APIClient()
 
-    def test_weather_data_retrieval(self):
-        url = reverse("weather-data", args=(self.date, self.min_temperature, self.max_temperature))
-        response = self.client.get(url)
-        self.assertEqual(response.status_code, 200)
-        # self.assertContains(response, self.location)
-        # Add more assertions based on your view's expected behavior
+@pytest.mark.django_db
+def test_create_forecast():
+    response = client.get('/weather/Toronto', {}, follow=True)
+    assert response.status_code == 200
+    forecast = WeatherForecast.objects.first()
+    assert forecast is not None
+    
+def test_bad_forecast_request_no_locaton():
+    response = client.get('/weather/', {}, follow=True)
+    assert response.status_code == 404
+    

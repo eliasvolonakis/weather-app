@@ -32,14 +32,15 @@ def weather_forecast(request, location):
 
         if weather_response.status_code == 200:
             data = weather_response.json()
-
+            # print(data)
             forecasts = []
 
             for i in range(min(FORECAST_NUM, len(data["daily"]["time"]))):
                 w = WeatherForecast(
-                    date=data["daily"]["time"][i],
-                    min_temperature=data["daily"]['temperature_2m_min'][i],
-                    max_temperature=data["daily"]['temperature_2m_max'][i],
+                    date = data["daily"]["time"][i],
+                    min_temperature = data["daily"]['temperature_2m_min'][i],
+                    max_temperature = data["daily"]['temperature_2m_max'][i],
+                    precipitation_sum = data["daily"]['precipitation_sum'][i]
                 )
                 w.save()  # Save the forecast to the database
                 serializer = WeatherForecastSerializer(w)  # Serialize the forecast
