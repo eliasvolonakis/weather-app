@@ -3,6 +3,7 @@ body, html {
     margin: 0;
     padding:0;
     font-family: 'Georgia';
+    font-size: 16px;
 }
 
 .App {
@@ -16,7 +17,7 @@ body, html {
 
 .WeatherForecast {
     height: 100%;
-    background-image: url('./../images/sky.png'); /* Adjust the URL based on your project's structure */
+    background-image: url('./../images/sky.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -40,42 +41,51 @@ body, html {
   
   .forecast-table {
     border-collapse: collapse;
-    background-color: #f2f2f2; /* Set the gray background color */
+    background-color: #f2f2f2;
     opacity: 0.8;
-    width: 80%; /* Adjust the width as needed */
-    margin: 20px; /* Add margin for spacing */
+    width: 80%;
+    margin: 20px;
   }
   
   .forecast-table th,
   .forecast-table td {
-    border: 1px solid #ddd; /* Add vertical and horizontal lines */
+    border: 1px solid #ddd;
     padding: 8px;
     text-align: center;
   }
   
   .forecast-table th {
-    background-color: #ccc; /* Header background color */
+    background-color: #ccc;
   }
 
   .input-container {
     display: flex;
-    align-items: center; /* Vertically center the input and button */
-    justify-content: space-between; /* Add space between the input and button */
-    margin: 20px 0; /* Add margin to separate from other elements */
+    align-items: center;
+    justify-content: space-between;
+    margin: 20px 0;
   }
   
   .input-container {
-    margin-bottom: 10px; /* Add margin to separate from the button */
+    margin-bottom: 10px;
     display: flex;
-    justify-content: center; /* Center horizontally */
+    justify-content: center;
     align-items: center;
   }
   
   .button-container {
-    margin-top: 10px; /* Add margin to separate from the input field */
+    margin-top: 10px; 
   }
   
   .icon-large {
-    font-size: 4em; /* Adjust the size as needed */
+    font-size: 4em; 
+  }
+
+  .rounded-button {
+    padding: 10px 20px; 
+    border: none;
+    border-radius: 20px; 
+    background-color: #ccc;
+    color: rgb(4, 4, 4); 
+    cursor: pointer;
   }
   

@@ -3,21 +3,25 @@ import './../styles/WeatherForecast.css';
 import { WiDaySunny, WiCloudy, WiRain, WiDayStormShowers } from 'react-icons/wi';
 
 function WeatherForecast() {
-  const [location, setLocation] = useState(''); // Use an empty string as the initial location
+  // Use an empty string as the initial location
+  const [location, setLocation] = useState('');
   const [weatherData, setWeatherData] = useState([]);
   const [error, setError] = useState(null);
 
   const handleGenerateForecast = () => {
-    fetchData(); // Trigger fetching data when the button is clicked
+    // Trigger fetching data when the button is clicked
+    fetchData();
   };
 
   const fetchData = async () => {
     try {
+      // Get backend data
       const response = await fetch(`http://localhost:8000/weather/${location}`);
       if (response.ok) {
         const data = await response.json();
         setWeatherData(data);
-        setError(null); // Clear any previous errors
+        // Clear any previous errors
+        setError(null);
       } else {
         setError('Failed to fetch weather data.');
       }
@@ -27,8 +31,8 @@ function WeatherForecast() {
   };
 
   const getWeatherIcon = (weatherCode) => {
-    console.log(weatherCode)
     weatherCode = Number(weatherCode)
+    // Define iconMapping based on WMO weathercode
     const iconMapping = [
         { min: 0, max: 5, icon: <WiDaySunny /> },
         { min: 6, max: 19, icon: <WiCloudy /> }, 
@@ -167,9 +171,9 @@ function WeatherForecast() {
         onChange={(e) => setLocation(e.target.value)}
       />
     </div>
-    <div className="button-container">
-      <button onClick={handleGenerateForecast}>Generate Forecast</button>
-    </div>
+    <button className="rounded-button" onClick={handleGenerateForecast}>
+        Generate Forecast
+    </button>
     {error && <p className="error">{error}</p>}
     <div className="table-container">{renderTable()}</div>
   </div>
