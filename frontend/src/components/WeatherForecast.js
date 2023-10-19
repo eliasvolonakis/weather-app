@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './../styles/WeatherForecast.css';
+import { WiDaySunny, WiCloudy, WiRain, WiDayStormShowers } from 'react-icons/wi';
 
 function WeatherForecast() {
   const [location, setLocation] = useState(''); // Use an empty string as the initial location
@@ -24,6 +25,24 @@ function WeatherForecast() {
       setError('An error occurred while fetching weather data.');
     }
   };
+
+  const getWeatherIcon = (weatherCode) => {
+    console.log(weatherCode)
+    weatherCode = Number(weatherCode)
+    const iconMapping = [
+        { min: 0, max: 5, icon: <WiDaySunny /> },
+        { min: 6, max: 19, icon: <WiCloudy /> }, 
+        { min: 20, max: 29, icon: <WiRain /> },
+        { min: 30, max: 39, icon: <WiDayStormShowers /> },
+        { min: 40, max: 49, icon: <WiCloudy /> },
+        { min: 50, max: 94, icon: <WiRain /> },
+        { min: 95, max: 100, icon: <WiDayStormShowers /> },
+    ];
+
+    const matchedRule = iconMapping.find((rule) => weatherCode >= rule.min && weatherCode <= rule.max);
+    return matchedRule ? matchedRule.icon : null;
+    };
+
 
   const renderTable = () => {
     // Group weather data by date
@@ -68,6 +87,14 @@ function WeatherForecast() {
           </tr>
         </thead>
         <tbody>
+          <tr>
+            <td></td>
+            {dates.map((date) => (
+              <td key={date}>
+                <span className="icon-large">{getWeatherIcon(groupedData[date].weathercode)}</span>
+              </td>
+            ))}
+          </tr>
           <tr>
             <td>Min Temperature (&deg;C)</td>
             {dates.map((date) => (
