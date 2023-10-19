@@ -74,7 +74,7 @@ function WeatherForecast() {
             ))}
           </tr>
           <tr>
-            <td>Precipitation Sum</td>
+            <td>Total Precipitation</td>
             {dates.map((date) => (
               <td key={date}>
                 {groupedData[date].precipitation_sum.join(', ')}
@@ -88,10 +88,10 @@ function WeatherForecast() {
 
   return (
     <div className="WeatherForecast">
-      <h2>Weather Forecast</h2>
+      <h1 style={{ fontFamily: 'Georgia', color: 'WhiteSmoke' }}>Weather Forecast</h1>
       <input
         type="text"
-        placeholder="Enter location"
+        placeholder="Enter City"
         value={location}
         onChange={(e) => setLocation(e.target.value)}
       />
