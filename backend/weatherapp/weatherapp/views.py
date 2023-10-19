@@ -63,7 +63,9 @@ def weather_forecast(request, location):
                     uv_index_max = data["daily"]['uv_index_max'][i],
                     windspeed_10m_max = data["daily"]['windspeed_10m_max'][i],
                     sunrise = sunrise_time_string,
-                    sunset = sunset_time_string
+                    sunset = sunset_time_string,
+                    # Get feels_like temp based on apparent_temperature_min and apparent_temperature_max
+                    feels_like = (data["daily"]['apparent_temperature_min'][i] + data["daily"]['apparent_temperature_max'][i]) // 2
                 )
                 # Save the forecast to the database
                 w.save()

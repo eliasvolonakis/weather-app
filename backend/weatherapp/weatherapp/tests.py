@@ -30,7 +30,8 @@ def test_create_forecast():
     assert type(forecast.uv_index_max) is decimal.Decimal
     assert forecast.windspeed_10m_max is not None
     assert type(forecast.windspeed_10m_max) is decimal.Decimal
-
+    assert forecast.feels_like is not None
+    assert type(forecast.feels_like) is decimal.Decimal
     
 def test_bad_forecast_request_no_locaton():
     warnings.simplefilter("ignore")

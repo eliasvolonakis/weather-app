@@ -10,6 +10,7 @@ class WeatherForecast(models.Model):
     sunset = models.CharField(max_length=16)
     uv_index_max = models.DecimalField(max_digits=5, decimal_places=2, default=0)
     windspeed_10m_max = models.DecimalField(max_digits=5, decimal_places=1, default=0)
+    feels_like = models.DecimalField(max_digits=5, decimal_places=0, default=0)
 
     def __str__(self):
         return f"{self.date}: MIN: {self.min_temperature} MAX: {self.max_temperature}"

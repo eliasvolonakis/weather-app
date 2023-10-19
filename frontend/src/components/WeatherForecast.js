@@ -63,6 +63,7 @@ function WeatherForecast() {
           sunset: [],
           uv_index_max: [],
           windspeed_10m_max: [],
+          feels_like: []
         };
       }
       groupedData[date].min_temperature.push(forecast.min_temperature);
@@ -73,6 +74,7 @@ function WeatherForecast() {
       groupedData[date].sunset.push(forecast.sunset);
       groupedData[date].uv_index_max.push(forecast.uv_index_max);
       groupedData[date].windspeed_10m_max.push(forecast.windspeed_10m_max);
+      groupedData[date].feels_like.push(forecast.feels_like);      
     });
   
 
@@ -96,6 +98,14 @@ function WeatherForecast() {
             {dates.map((date) => (
               <td key={date}>
                 <span className="icon-large">{getWeatherIcon(groupedData[date].weathercode)}</span>
+              </td>
+            ))}
+          </tr>
+          <tr>
+            <td>Feels Like (&deg;C)</td>
+            {dates.map((date) => (
+              <td key={date}>
+                {groupedData[date].feels_like.join(', ')}
               </td>
             ))}
           </tr>
