@@ -15,13 +15,15 @@ function WeatherForecast() {
 
   const fetchData = async () => {
     try {
-      // Get backend data
+      // Get weather data
       const response = await fetch(`http://localhost:8000/weather/${location}`);
       if (response.ok) {
         const data = await response.json();
         setWeatherData(data);
         // Clear any previous errors
         setError(null);
+      } else if (response.status === 404) {
+        setError('Location not found. Please check your input.');
       } else {
         setError('Failed to fetch weather data.');
       }
@@ -39,7 +41,9 @@ function WeatherForecast() {
         { min: 20, max: 29, icon: <WiRain /> },
         { min: 30, max: 39, icon: <WiDayStormShowers /> },
         { min: 40, max: 49, icon: <WiCloudy /> },
-        { min: 50, max: 94, icon: <WiRain /> },
+        { min: 50, max: 79, icon: <WiRain /> },
+        { min: 80, max: 82, icon: <WiCloudy /> },
+        { min: 83, max: 94, icon: <WiRain /> },
         { min: 95, max: 100, icon: <WiDayStormShowers /> },
     ];
 
