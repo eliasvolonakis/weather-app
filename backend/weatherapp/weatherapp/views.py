@@ -40,7 +40,12 @@ def weather_forecast(request, location):
                     date = data["daily"]["time"][i],
                     min_temperature = data["daily"]['temperature_2m_min'][i],
                     max_temperature = data["daily"]['temperature_2m_max'][i],
-                    precipitation_sum = data["daily"]['precipitation_sum'][i]
+                    precipitation_sum = data["daily"]['precipitation_sum'][i],
+                    weathercode = data["daily"]['weathercode'][i],
+                    uv_index_max = data["daily"]['uv_index_max'][i],
+                    windspeed_10m_max = data["daily"]['windspeed_10m_max'][i],
+                    sunrise = data["daily"]['sunrise'][i].split('T')[-1],
+                    sunset = data["daily"]['sunset'][i].split('T')[-1]
                 )
                 w.save()  # Save the forecast to the database
                 serializer = WeatherForecastSerializer(w)  # Serialize the forecast

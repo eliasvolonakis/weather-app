@@ -35,12 +35,23 @@ function WeatherForecast() {
           min_temperature: [],
           max_temperature: [],
           precipitation_sum: [],
+          weathercode: [],
+          sunrise: [],
+          sunset: [],
+          uv_index_max: [],
+          windspeed_10m_max: [],
         };
       }
       groupedData[date].min_temperature.push(forecast.min_temperature);
       groupedData[date].max_temperature.push(forecast.max_temperature);
       groupedData[date].precipitation_sum.push(forecast.precipitation_sum);
+      groupedData[date].weathercode.push(forecast.weathercode);
+      groupedData[date].sunrise.push(forecast.sunrise);
+      groupedData[date].sunset.push(forecast.sunset);
+      groupedData[date].uv_index_max.push(forecast.uv_index_max);
+      groupedData[date].windspeed_10m_max.push(forecast.windspeed_10m_max);
     });
+  
 
     // Get unique dates for columns
     const dates = Object.keys(groupedData);
@@ -58,7 +69,7 @@ function WeatherForecast() {
         </thead>
         <tbody>
           <tr>
-            <td>Min Temperature</td>
+            <td>Min Temperature (&deg;C)</td>
             {dates.map((date) => (
               <td key={date}>
                 {groupedData[date].min_temperature.join(', ')}
@@ -66,7 +77,7 @@ function WeatherForecast() {
             ))}
           </tr>
           <tr>
-            <td>Max Temperature</td>
+            <td>Max Temperature (&deg;C)</td>
             {dates.map((date) => (
               <td key={date}>
                 {groupedData[date].max_temperature.join(', ')}
@@ -74,10 +85,42 @@ function WeatherForecast() {
             ))}
           </tr>
           <tr>
-            <td>Total Precipitation</td>
+            <td>Total Precipitation (mm)</td>
             {dates.map((date) => (
               <td key={date}>
                 {groupedData[date].precipitation_sum.join(', ')}
+              </td>
+            ))}
+          </tr>
+          <tr>
+            <td>Max UV Index</td>
+            {dates.map((date) => (
+              <td key={date}>
+                {groupedData[date].uv_index_max.join(', ')}
+              </td>
+            ))}
+          </tr>
+          <tr>
+            <td>Windspeed (KM/HR)</td>
+            {dates.map((date) => (
+              <td key={date}>
+                {groupedData[date].windspeed_10m_max.join(', ')}
+              </td>
+            ))}
+          </tr>
+          <tr>
+            <td>Sunrise</td>
+            {dates.map((date) => (
+              <td key={date}>
+                {groupedData[date].sunrise.join(', ')}
+              </td>
+            ))}
+          </tr>
+          <tr>
+            <td>Sunset</td>
+            {dates.map((date) => (
+              <td key={date}>
+                {groupedData[date].sunset.join(', ')}
               </td>
             ))}
           </tr>
@@ -88,17 +131,21 @@ function WeatherForecast() {
 
   return (
     <div className="WeatherForecast">
-      <h1 style={{ fontFamily: 'Georgia', color: 'WhiteSmoke' }}>Weather Forecast</h1>
+    <h1 style={{ fontFamily: 'Georgia', color: 'WhiteSmoke' }}>Weather Forecast</h1>
+    <div className="input-container">
       <input
         type="text"
         placeholder="Enter City"
         value={location}
         onChange={(e) => setLocation(e.target.value)}
       />
-      <button onClick={handleGenerateForecast}>Generate Forecast</button>
-      {error && <p className="error">{error}</p>}
-      <div className="table-container">{renderTable()}</div>
     </div>
+    <div className="button-container">
+      <button onClick={handleGenerateForecast}>Generate Forecast</button>
+    </div>
+    {error && <p className="error">{error}</p>}
+    <div className="table-container">{renderTable()}</div>
+  </div>
   );
 }
 
