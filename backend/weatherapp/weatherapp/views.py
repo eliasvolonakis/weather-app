@@ -22,7 +22,7 @@ def weather_forecast(request, location):
     location_api = LOCATION_API.format(location)
     location_response = requests.get(location_api).json()
 
-    if not location_response:
+    if len(location_response) == 0:
         return Response({'error': 'Location not found'}, status=status.HTTP_404_NOT_FOUND)
 
     latitude = location_response[0]['lat']
