@@ -83,3 +83,8 @@ Before getting started, ensure you have the following installed:
 2. Enter a city in the input field and click the "Generate Forecast" button.
 
 3. The app will fetch weather data and display it in a table with icons representing the weather conditions.
+
+## Screenshots
+
+<img width="1183" alt="Weather App Toronto Display" src="https://github.com/eliasvolonakis/weather-app/assets/29893540/f6035e09-a7ff-4f76-ac18-982e91852fb5">
+
