@@ -1,12 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './../styles/WeatherForecast.css';
 import { WiDaySunny, WiCloudy, WiRain, WiDayStormShowers } from 'react-icons/wi';
 
 function WeatherForecast() {
-  // Use an empty string as the initial location
-  const [location, setLocation] = useState('');
+  const [location, setLocation] = useState(process.env.REACT_APP_DEFAULT_LOCATION ? process.env.REACT_APP_DEFAULT_LOCATION : "Toronto");
   const [weatherData, setWeatherData] = useState([]);
   const [error, setError] = useState(null);
+
+  useEffect(() => {
+    // Fetch data for default location Toronto when the component mounts
+    fetchData(); 
+  }, []);
 
   const handleGenerateForecast = () => {
     // Trigger fetching data when the button is clicked

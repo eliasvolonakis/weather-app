@@ -16,9 +16,12 @@ WEATHER_API = os.getenv('WEATHER_API')
 LOCATION_API = os.getenv('LOCATION_API')
 # Default to 5 forecasts
 FORECAST_NUM = int(os.getenv('FORECAST_NUM', 5))
+# Default to 5 forecasts
+DEFAULT_LOCATION = os.getenv('DEFAULT_LOCATION')
 
 @api_view(['GET'])
 def weather_forecast(request, location):
+    location = location if location else DEFAULT_LOCATION
     location_api = LOCATION_API.format(location)
     location_response = requests.get(location_api).json()
 
@@ -37,7 +40,7 @@ def weather_forecast(request, location):
             data = weather_response.json()
             forecasts = []
 
-            for i in range(min(FORECAST_NUM, len(data["daily"]["time"]))):
+            for i in range(min(FORECAST_NUM + 1, len(data["daily"]["time"]))):
                 # Get day of week
                 date_str = data["daily"]["time"][i].split('T')[-1],
                 date_object = datetime.strptime(date_str[0], '%Y-%m-%d').date()
