@@ -84,6 +84,36 @@ Before getting started, ensure you have the following installed:
 
 3. The app will fetch weather data and display it in a table with icons representing the weather conditions.
 
+## Running Tests
+
+### Backend Tests (Django)
+
+1. Make sure you are in the directory of the project where the weatherapp/tests.py file is located.
+
+2. Run the following command in the terminal to set the `DJANGO_SETTINGS_MODULE`: 
+   ```bash
+   export DJANGO_SETTINGS_MODULE=weatherapp.settings
+   ```
+3. Run tests with the following command:
+   ```bash
+   pytest tests.py
+   ```
+   This command will start the test runner and display the test results.
+### Frontend Tests (React)
+
+To run tests for the frontend of the Weather App, you'll need to use the testing framework provided by Create React App. Follow these steps to execute the tests:
+
+1. Make sure you are in the `frontend` directory:
+   ```bash
+   cd frontend
+   ```
+
+2. Run tests with the following command:
+   ```
+   npm test
+   ```
+   This command will start the test runner and display the test results.
+
 ## Screenshots
 
 <img width="1183" alt="Weather App Toronto Display" src="https://github.com/eliasvolonakis/weather-app/assets/29893540/f6035e09-a7ff-4f76-ac18-982e91852fb5">
